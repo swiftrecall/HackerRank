@@ -1,5 +1,5 @@
 /**
-	Solution to HackerRank "Running Time Algorithms Problem" (https://www.hackerrank.com/challenges/runningtime)
+	Solution to HackerRank "Running Time Algorithms" problem (https://www.hackerrank.com/challenges/runningtime)
 */
 
 import java.io.*;
