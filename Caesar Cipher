@@ -1,0 +1,35 @@
+/**
+  Solution to HackerRank "Caesar Cipher" problem (https://www.hackerrank.com/challenges/caesar-cipher-1)
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String s = in.next();
+        int k = in.nextInt()%26;
+        String encrypted = "";
+        for (int i = 0; i<n; i++) {
+            int ascii = (int) s.charAt(i);
+            if (isBetween(ascii, 65, 90)) {
+                encrypted += (char) ((ascii+k <= 90) ? ascii + k : ascii + k - 26);
+            } else if (isBetween(ascii, 97, 122)) {
+                encrypted += (char) ((ascii+k <= 122) ? ascii + k : ascii + k - 26);
+            } else {
+                encrypted += (char) ascii;
+            }
+        }
+        System.out.println(encrypted);
+    }
+    
+    private static boolean isBetween(int x, int min, int max) {
+        return min <= x && x <= max;
+    }
+}
