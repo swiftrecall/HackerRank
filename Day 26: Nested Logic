@@ -1,0 +1,35 @@
+/**
+	My solution to the HackerRank Day 26: Nested Logic problem.  (https://www.hackerrank.com/challenges/30-nested-logic)
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scin = new Scanner(System.in);
+        
+        int dayReturn = scin.nextInt();
+        int monthReturn = scin.nextInt();
+        int yearReturn = scin.nextInt();
+        
+        int dayExpected = scin.nextInt();
+        int monthExpected = scin.nextInt();
+        int yearExpected = scin.nextInt();
+        
+        int fine = 0;
+        if (yearReturn > yearExpected) {
+            fine += 10000;
+        } else if (yearReturn==yearExpected && monthReturn > monthExpected) {
+            fine += (monthReturn-monthExpected) * 500;
+        } else if (yearReturn==yearExpected && monthReturn==monthExpected && dayReturn > dayExpected) {
+            fine += (dayReturn-dayExpected) * 15;
+        }
+        
+        System.out.println(fine);
+    }
+}
