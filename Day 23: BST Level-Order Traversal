@@ -1,0 +1,67 @@
+/**
+	Solution to HackerRank Day 23: BST Level-Order Traversal problem.  (https://www.hackerrank.com/challenges/30-binary-trees)
+*/
+
+import java.io.*;
+import java.util.*;
+class Node{
+    Node left,right;
+    int data;
+    Node(int data){
+        this.data=data;
+        left=right=null;
+    }
+}
+class Solution{
+	
+	/**
+		Prints out the contents of a tree based on the level.  Reads top-down, left-right.
+	*/
+	public static void levelOrder(Node root){
+  		Queue<Node> levels = new LinkedList<Node>();		// Queue holds the nodes of level being read
+        StringBuffer output = new StringBuffer();
+        levels.add(root);
+        while (!levels.isEmpty()) {							// ends when no nodes are added
+            Queue<Node> temp = new LinkedList<Node>();		// temporary Queue that contains the next level of nodes
+            for (Node n : levels) {							// loops through all Nodes in the current node
+                output.append(n.data + " ");
+                if (n.left!=null) {
+                    temp.add(n.left);					
+                }
+                if (n.right!=null) {
+                    temp.add(n.right);
+                }
+            }
+            levels = temp;									// levels Queue is replaced with temp Queue which holds next level of Nodex
+        }
+        System.out.println(output);
+    }
+    
+    public static Node insert(Node root,int data){
+        if(root==null){
+            return new Node(data);
+        }
+        else{
+            Node cur;
+            if(data<=root.data){
+                cur=insert(root.left,data);
+                root.left=cur;
+            }
+            else{
+                cur=insert(root.right,data);
+                root.right=cur;
+            }
+            return root;
+        }
+    }
+    public static void main(String args[]){
+            Scanner sc=new Scanner(System.in);
+            int T=sc.nextInt();
+            Node root=null;
+            while(T-->0){
+                int data=sc.nextInt();
+                root=insert(root,data);
+            }
+            levelOrder(root);
+        }	
+}
